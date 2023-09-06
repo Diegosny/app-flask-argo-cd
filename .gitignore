@@ -88,3 +88,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+src/__pycache__
+src/*/__pycache__
