@@ -44,9 +44,15 @@ jobs:
             cd k8s 
             kustomize edit set image ${{ env.DOCKERHUB_USER}}/${{ env.APP_NAME }}:${{ github.sha }}
 
-        - name: Commit new tag
+        - name: Config and commit new tag
           run: |
             git config --global user.email "action@gitub.com"
             git config --global user.name "Deploy Image"
             git commit -am "Generate new tag image `${GITHUB_SHA}`"
-            git push
+          
+        - name: Push changes
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: ${{ github.ref }}
+
