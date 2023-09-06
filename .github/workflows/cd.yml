@@ -38,8 +38,15 @@ jobs:
        
         - name: Install kustomize and generate new file
           uses: imranismail/setup-kustomize@v2
-        - run: |
-            cd k8s
+
+        - name: Update k8s
+          run: |
+            cd k8s 
             kustomize edit set image ${{ env.DOCKERHUB_USER}}/${{ env.APP_NAME }}:${{ github.sha }}
+
+        - name: Commit new tag
+          run: |
+            git config --global user.email "action@gitub.com"
+            git config --global user.name "Deploy Image"
             git commit -am "Generate new tag image `${GITHUB_SHA}`"
             git push
