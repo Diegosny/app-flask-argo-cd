@@ -17,9 +17,9 @@ spec:
         app: app-flask
     spec:
       containers:
-        - image: app-flask-app
+        - image: build-app-flask
           name: app-flask
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           resources:

@@ -3,10 +3,9 @@ kind: Service
 metadata:
   name: service-app-flask
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: app-flask
   ports:
     - port: 8000
       targetPort: 5000
-      nodePort: 30007
