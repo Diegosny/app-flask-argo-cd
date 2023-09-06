@@ -6,7 +6,7 @@ on:
 
 jobs:
   setup-build-publish:
-    runs-on: ubunut-latest
+    runs-on: ubuntu-latest
     steps:
         - name: Checkout
           uses: actions/checkout@v4
