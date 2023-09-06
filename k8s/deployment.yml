@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-flask
+  namespace: micro-services
+  labels:
+    app: app-flask
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-flask
+  template:
+    metadata:
+      labels:
+        app: app-flask
+    spec:
+      containers:
+        - image: app-flask-app
+          name: app-flask
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              memory: "24Mi"
+              cpu: "250m"
+            limits: 
+              memory: "128Mi"
+              cpu: "500m"
