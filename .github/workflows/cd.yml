@@ -8,15 +8,12 @@ env:
   DOCKERHUB_USER: silvadiego23
   APP_NAME: app-flask
 
-permissions:
-  repository-projects: write
-
 jobs:
   setup-build-publish:
     runs-on: ubuntu-latest
     steps:
         - name: Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v3
 
         - name: Login Dockerhub
           uses: docker/login-action@v2
@@ -31,13 +28,14 @@ jobs:
            push: true
            tags: ${{ env.DOCKERHUB_USER}}/${{ env.APP_NAME }}:${{ github.sha }}
 
+  # Commit new tag image
   deployment-image:
       name: Deploy
       runs-on: ubuntu-latest
       needs: setup-build-publish
       steps:
         - name: Checkout
-          uses: actions/checkout@v4
+          uses: actions/checkout@v3
        
         - name: Install kustomize and generate new file
           uses: imranismail/setup-kustomize@v2
@@ -50,8 +48,8 @@ jobs:
         - name: Config and commit new tag
           run: |
             git config --global user.email "action@gitub.com"
-            git config --global user.name "dependabot[bot]"
-            git commit -am "Generate new tag image `${GITHUB_SHA}`"
+            git config --global user.name "github-actions[bot]"
+            git commit -a -m "Generate new tag image `${GITHUB_SHA}`"
           
         - name: Push changes
           uses: ad-m/github-push-action@master
