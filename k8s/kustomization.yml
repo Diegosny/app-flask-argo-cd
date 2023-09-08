@@ -8,3 +8,5 @@ images:
 - name: build-app-flask
   newName: silvadiego23/app-flask
   newTag: 5d74a8981cdb11edbb51bc2e180e38ffd21aab64
+- name: silvadiego23/app-flask
+  newTag: 090df4eeedf5349ae0d2d9d1723bb0a3b65a6495
