@@ -7,6 +7,4 @@ namespace: micro-services
 images:
 - name: build-app-flask
   newName: silvadiego23/app-flask
-  newTag: latest
-- name: silvadiego23/app-flask
   newTag: 5d74a8981cdb11edbb51bc2e180e38ffd21aab64
