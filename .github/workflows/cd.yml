@@ -8,6 +8,9 @@ env:
   DOCKERHUB_USER: silvadiego23
   APP_NAME: app-flask
 
+permissions:
+  contents: write
+
 jobs:
   setup-build-publish:
     runs-on: ubuntu-latest
@@ -56,6 +59,4 @@ jobs:
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             branch: ${{ github.ref }}
-        - run: |
-            echo  ${{ secrets.GITHUB_TOKEN }}
 
